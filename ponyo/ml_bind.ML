@@ -1,9 +1,0 @@
-structure Ponyo =
-struct
-    structure String = Ponyo_String_
-    structure Format = Ponyo_Format_
-    structure Container = Ponyo_Container
-    structure Net = Ponyo_Net
-    structure Os = Ponyo_Os
-    structure Sml = Ponyo_Sml_
-end

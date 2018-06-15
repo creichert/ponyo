@@ -1,0 +1,35 @@
+.ponyo-signature  {
+    max-width: 650px;
+}
+
+.ponyo-signature pre {
+    border: 1px solid #ccc;
+}
+
+.ponyo-generic {
+    margin-bottom: 15px;
+    padding: 30px;
+    border: 1px solid #ccc;
+}
+
+.ponyo-generic:first-of-type {
+    margin-top: 15px;
+}
+
+.ponyo-generic-signature {
+    font-size: large;
+}
+
+.ponyo-generic-name {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.ponyo-generic-name-label-colon {
+    padding-right: 10px;
+}
+
+.ponyo-signature-description,
+.ponyo-generic-description {
+    padding-top: 10px;
+}

@@ -1,28 +1,30 @@
-.PHONY: all build-static build-server build-documentation deploy configure clean
+OUTPUT_DIR=dist/bin
+
+.PHONY: all static $(OUTPUT_DIR)/server reference deploy configure clean
 
 all:
-	$(MAKE) build-server
-	$(MAKE) build-static
-	$(MAKE) build-documentation
+	$(MAKE) $(OUTPUT_DIR)/server
+	$(MAKE) static
+	$(MAKE) reference
 
-build-static:
-	(cd $$(pwd)/static && gulp)
+static:
+	(cd $$(pwd)/static && ./node_modules/.bin/gulp)
 
-build-server:
-	@mkdir -p dist/bin
-	ponyo make server/server.sml -o dist/bin/server
+$(OUTPUT_DIR)/server: server/server.sml
+	@mkdir -p $(OUTPUT_DIR)
+	ponyo make $< -o $@
 
-build-documentation:
-	ponyo doc ../ -o dist/templates/documentation \
-            -p dist/templates/documentation/signature.html \
-	    -r github.com,eatonphil,ponyo
+reference:
+	ponyo doc ../ -o dist/templates/reference \
+            -p dist/templates/reference/signature.html \
+	    -r github.com/eatonphil/ponyo
 
 deploy:
-	rsync --exclude dist/bin/server -r dist ponyo:~/
+	rsync --exclude $(OUTPUT_DIR)/server -r dist ponyo.org:~/
 
 configure:
-	@mkdir -p dist/bin
-	@(cd $$(pwd)/static && npm install)
+	@mkdir -p $(OUTPUT_DIR)
+	@(cd $$(pwd)/static && yarn)
 
 clean:
 	rm -rf dist static/node_modules

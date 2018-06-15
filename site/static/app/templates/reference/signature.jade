@@ -1,0 +1,17 @@
+extends ../tmpl/base.jade
+
+block append css
+    link(rel="stylesheet", href="/css/vendor/highlightjs/default.css")
+    link(rel="stylesheet", href="/css/reference.css")
+    
+block title
+    title % Signature - Ponyo
+
+block body
+    .container
+        | Reference &bull; Ponyo
+        | %
+
+block append js
+    script(src="/js/vendor/highlightjs/highlight.pack.js")
+    script hljs.initHighlightingOnLoad();
